@@ -4,9 +4,9 @@ mvnw.cmd
 .mvn
 target/
 !.mvn/wrapper/maven-wrapper.jar
-!**/src/main/resources/application.properties
-!**/src/test/**/target/
 /src/main/resources/application.properties
+!**/src/test/**/target/
+
 
 ### STS ###
 .apt_generated
