@@ -47,4 +47,18 @@ public class DeptController {
         return Result.success();
     }
 
+    @GetMapping("/{id}")
+    public Result getById(@PathVariable Integer id){
+        log.info("get department by id: " + id);
+        Dept dept = deptService.getById(id);
+        return Result.success(dept);
+    }
+
+    @PutMapping
+    public Result revise(@RequestBody Dept dept){
+        log.info("revise department to name: " + dept.getName());
+        deptService.revise(dept);
+        return Result.success();
+    }
+
 }

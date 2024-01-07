@@ -22,7 +22,7 @@ public class Emp {
     private Short gender; //sex , 1 male, 2 female
     private String image;
     private Short job; //job position, 1 lecturer , 2 assistant professor , 3 admin manager, 4 edu manager , 5 consultant
-    private LocalDate entryDate;
+    private LocalDate entrydate;
     private Integer deptId;
     private LocalDateTime createTime;
     private LocalDateTime updateTime;

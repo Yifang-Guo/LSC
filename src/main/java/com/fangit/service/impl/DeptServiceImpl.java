@@ -38,4 +38,17 @@ public class DeptServiceImpl implements DeptService {
 
         deptMapper.insert(dept);
     }
+
+    @Override
+    public void revise(Dept dept) {
+        Dept original = getById(dept.getId());
+        original.setName(dept.getName());
+        dept.setUpdateTime(LocalDateTime.now());
+        deptMapper.revise(dept);
+    }
+
+    @Override
+    public Dept getById(Integer id) {
+        return deptMapper.getById(id);
+    }
 }
