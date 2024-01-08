@@ -1,5 +1,6 @@
 package com.fangit.controller;
 
+import com.fangit.pojo.Emp;
 import com.fangit.pojo.PageBean;
 import com.fangit.pojo.Result;
 import com.fangit.service.EmpService;
@@ -37,5 +38,12 @@ public class EmpController {
         log.info("delete operation: {}", ids);
         empService.delete(ids);
         return  Result.success();
+    }
+
+    @PostMapping
+    public Result save(@RequestBody Emp emp){
+        log.info("add new employee: {}" + emp);
+        empService.save(emp);
+        return Result.success();
     }
 }
