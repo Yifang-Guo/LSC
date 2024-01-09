@@ -32,19 +32,6 @@ public class StorageService {
     private AmazonS3 s3Client;
 
     public String uploadFile(MultipartFile image){
-//        String originalFilename = image.getOriginalFilename();
-//
-////        int index = originalFilename.lastIndexOf(".");
-////        String extName = originalFilename.substring(index);
-////        String newFileName = UUID.randomUUID().toString() + extName;
-////        log.info("new file name: {}", newFileName);
-//
-//        File newFile = convertMultiPartFileToFile(image);
-//
-//        s3Client.putObject(new PutObjectRequest(bucketName, originalFilename, newFile));
-//        newFile.delete();
-//        String url = s3Client.getUrl(bucketName, originalFilename).toString();
-//        return url;
         String originalFilename = image.getOriginalFilename();
         int index = originalFilename.lastIndexOf(".");
         String extName = originalFilename.substring(index);
@@ -56,6 +43,7 @@ public class StorageService {
                 File file1 = convertMultiPartToFile(image);
                 PutObjectResult putObjectResult = s3Client.putObject(bucketName, newFileName, file1);
                 String url = s3Client.getUrl(bucketName, newFileName).toString();
+                log.info("url: {}", url);
                 return url;
             } catch (IOException e) {
                 if (++count == maxTries) throw new RuntimeException(e);

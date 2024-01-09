@@ -27,8 +27,8 @@ public class UploadController {
         log.info("upload file : {}", image);
 
 
-        storageService.uploadFile(image);
+        String url = storageService.uploadFile(image);
         //image.transferTo(new File("/Users/charlize/Downloads/test/" + newFileName));
-        return Result.success();
+        return Result.success(url);
     }
 }

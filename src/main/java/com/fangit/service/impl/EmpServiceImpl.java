@@ -21,17 +21,7 @@ import java.util.List;
 public class EmpServiceImpl implements EmpService {
     @Autowired
     private EmpMapper empMapper;
-//    @Override
-//    public PageBean page(Integer page, Integer pageSize) {
-//        //get total count
-//        long count = empMapper.count();
-//        //get result by page
-//        Integer start = (page - 1) * pageSize;
-//        List<Emp> empList = empMapper.page(start, pageSize);
-//        //capsule pageBean
-//        PageBean pageBean = new PageBean(count, empList);
-//        return pageBean;
-//    }
+
 
     @Override
     public PageBean page(Integer page, Integer pageSize, String name, Short gender, LocalDate begin, LocalDate end) {
@@ -55,5 +45,16 @@ public class EmpServiceImpl implements EmpService {
         emp.setCreateTime(LocalDateTime.now());
         emp.setUpdateTime(LocalDateTime.now());
         empMapper.insert(emp);
+    }
+
+    @Override
+    public Emp getById(Integer id) {
+        return empMapper.getById(id);
+    }
+
+    @Override
+    public void update(Emp emp) {
+        emp.setUpdateTime(LocalDateTime.now());
+        empMapper.update(emp);
     }
 }

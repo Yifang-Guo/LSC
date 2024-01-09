@@ -22,6 +22,7 @@ import java.util.List;
 public class EmpController {
     @Autowired
     private EmpService empService;
+
     @GetMapping
     public Result page(@RequestParam(defaultValue = "1") Integer page,
                        @RequestParam(defaultValue = "10")Integer pageSize,
@@ -31,6 +32,13 @@ public class EmpController {
         log.info("query by page, para: {}, {}, {}, {}, {}, {}", page, pageSize, name, gender, begin, end);
         PageBean pageBean = empService.page(page, pageSize, name, gender, begin, end);
         return Result.success(pageBean);
+    }
+
+    @GetMapping("/{id}")
+    public Result getById(@PathVariable Integer id){
+        log.info("get emp info by id: {}", id);
+        Emp emp = empService.getById(id);
+        return Result.success(emp);
     }
 
     @DeleteMapping("/{ids}")
@@ -44,6 +52,13 @@ public class EmpController {
     public Result save(@RequestBody Emp emp){
         log.info("add new employee: {}" + emp);
         empService.save(emp);
+        return Result.success();
+    }
+
+    @PutMapping
+    public Result update(@RequestBody Emp emp){
+        log.info("update emp info: {}", emp);
+        empService.update(emp);
         return Result.success();
     }
 }
