@@ -1,17 +1,17 @@
-Built the project by springboot, tested api by postman, stored image file in aws s3 service, this project can management department information and employee information.
-It also has login validation, in which implemented by interceptor via spring framework.
+Built the project by springboot, tested API by postman, and stored image file in aws s3 service, this project can manage department information and employee information.
+It also has login validation, which is implemented by the interceptor via the spring framework.
 
 1. department management
    
-  query all of the department information
+     query all of the department information
   
-  delete department
+     delete department
   
-  add department
+     add department
   
-  update department
+     update department
   
-  query department by ID
+     query department by ID
 
 3. employee management
    
