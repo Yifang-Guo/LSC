@@ -1,10 +1,14 @@
 package com.fangit.service.impl;
 
 import com.fangit.mapper.DeptMapper;
+import com.fangit.mapper.EmpMapper;
 import com.fangit.pojo.Dept;
+import com.fangit.pojo.DeptLog;
+import com.fangit.service.DeptLogService;
 import com.fangit.service.DeptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,6 +22,12 @@ public class DeptServiceImpl implements DeptService {
     @Autowired
     private DeptMapper deptMapper;
 
+    @Autowired
+    private EmpMapper empMapper;
+
+    @Autowired
+    private DeptLogService deptLogService;
+
     //query department info
     @Override
     public List<Dept> list() {
@@ -25,9 +35,20 @@ public class DeptServiceImpl implements DeptService {
     }
 
     //delete department
+    @Transactional
     @Override
-    public void delete(Integer id) {
-        deptMapper.deleteById(id);
+    public void delete(Integer deptId) {
+        try {
+            deptMapper.deleteById(deptId);
+            empMapper.deleteByDeptId(deptId);
+        } finally {
+            DeptLog deptLog = new DeptLog();
+            deptLog.setCreateTime(LocalDateTime.now());
+            deptLog.setDescription("executed delete department operation for Id: " + deptId);
+            deptLogService.insert(deptLog);
+        }
+
+
     }
 
     //add department

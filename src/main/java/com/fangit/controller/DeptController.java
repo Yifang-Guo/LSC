@@ -1,5 +1,6 @@
 package com.fangit.controller;
 
+import com.fangit.anno.Log;
 import com.fangit.pojo.Dept;
 import com.fangit.pojo.Result;
 import com.fangit.service.DeptService;
@@ -33,6 +34,7 @@ public class DeptController {
         return Result.success(deptList);
     }
 
+    @Log
     @DeleteMapping("/{id}")
     public Result delete(@PathVariable Integer id){
         log.info("delete department by id:" + id);
@@ -40,6 +42,7 @@ public class DeptController {
         return Result.success();
     }
 
+    @Log
     @PostMapping
     public Result add(@RequestBody Dept dept){
         log.info("add department:" + dept.getName());
@@ -54,6 +57,7 @@ public class DeptController {
         return Result.success(dept);
     }
 
+    @Log
     @PutMapping
     public Result revise(@RequestBody Dept dept){
         log.info("revise department to name: " + dept.getName());

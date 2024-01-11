@@ -1,5 +1,6 @@
 package com.fangit.controller;
 
+import com.fangit.anno.Log;
 import com.fangit.pojo.Emp;
 import com.fangit.pojo.PageBean;
 import com.fangit.pojo.Result;
@@ -41,6 +42,7 @@ public class EmpController {
         return Result.success(emp);
     }
 
+    @Log
     @DeleteMapping("/{ids}")
     public Result delete(@PathVariable List<Integer> ids){
         log.info("delete operation: {}", ids);
@@ -48,6 +50,7 @@ public class EmpController {
         return  Result.success();
     }
 
+    @Log
     @PostMapping
     public Result save(@RequestBody Emp emp){
         log.info("add new employee: {}", emp);
@@ -55,6 +58,7 @@ public class EmpController {
         return Result.success();
     }
 
+    @Log
     @PutMapping
     public Result update(@RequestBody Emp emp){
         log.info("update emp info: {}", emp);
